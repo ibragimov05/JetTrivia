@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jettrivia.screens.QuestionsViewModel
+import com.example.jettrivia.screens.TriviaHome
 import com.example.jettrivia.ui.theme.JetTriviaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,10 +26,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetTriviaTheme {
-                val questionsViewModel = viewModel<QuestionsViewModel>()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     TriviaHome(
-                        viewModel = questionsViewModel, modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
@@ -36,23 +36,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun TriviaHome(viewModel: QuestionsViewModel = hiltViewModel(), modifier: Modifier) {
-    Questions(viewModel = viewModel)
-}
-
-@Composable
-fun Questions(viewModel: QuestionsViewModel) {
-    val questions = viewModel.data.value.data?.toMutableList()
-
-    if (viewModel.data.value.loading == true) {
-        Text(text = "Loading...")
-    } else {
-        Text(text = "Data Loaded ${questions?.size}")
-    }
-
-    Log.d("TAG", "Questions: ${questions?.size}")
-}
 
 @Preview(showBackground = true)
 @Composable
