@@ -34,4 +34,12 @@ class QuestionsViewModel @Inject constructor(
             }
         }
     }
+
+    fun getQuestionsSize(): Int {
+        return if (data.value.data != null) {
+            data.value.data?.toMutableList()?.size!!
+        } else {
+            -1
+        }
+    }
 }

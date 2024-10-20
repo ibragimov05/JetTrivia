@@ -13,5 +13,5 @@ object AppColors {
     val mLightBlue = Color(0xff127EEA)
     val mBrown = Color(0xff7f6749)
     val mBlue = Color(0xff4b5f9e)
-
+    val mTransparent = Color(0x00000000)
 }
